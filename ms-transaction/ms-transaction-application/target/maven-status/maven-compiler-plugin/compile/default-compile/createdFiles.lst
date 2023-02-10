@@ -1,0 +1,5 @@
+com\gallery\app\transaction\application\mapper\TransactionMapperImpl$1.class
+com\gallery\app\transaction\application\mapper\TransactionMapperImpl.class
+com\gallery\app\transaction\application\rest\TransactionController.class
+com\gallery\app\transaction\application\mapper\TransactionMapper.class
+com\gallery\app\transaction\application\configuration\ApplicationConfiguration.class

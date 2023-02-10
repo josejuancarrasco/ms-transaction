@@ -1,0 +1,6 @@
+com\gallery\app\transaction\infrastructure\entity\TransactionEntity.class
+com\gallery\app\transaction\infrastructure\entity\TransactionEntityMapper.class
+com\gallery\app\transaction\infrastructure\repository\TransactionRepository.class
+com\gallery\app\transaction\infrastructure\entity\TransactionEntityMapperImpl.class
+com\gallery\app\transaction\infrastructure\adapter\TransactionRepositoryAdapter.class
+com\gallery\app\transaction\infrastructure\config\PersistenceConfiguration.class

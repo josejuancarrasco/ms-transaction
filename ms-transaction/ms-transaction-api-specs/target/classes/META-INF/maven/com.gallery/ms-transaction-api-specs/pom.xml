@@ -1,0 +1,128 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.gallery</groupId>
+		<artifactId>ms-transaction</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>ms-transaction-api-specs</artifactId>
+
+	<properties>
+		<openapi.plugin.skip>false</openapi.plugin.skip>
+		<openapi-generator.version>5.1.0</openapi-generator.version>
+		<openapi.generator.maven.plugin.modelNameSuffix>Dto</openapi.generator.maven.plugin.modelNameSuffix>
+		<swagger-parser.version>2.0.20</swagger-parser.version>
+		<jackson-databind-nullable.version>0.2.1</jackson-databind-nullable.version>
+		<hibernate-validator.version>7.0.1.Final</hibernate-validator.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-boot-starter</artifactId>
+				<version>3.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>${hibernate-validator.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openapitools</groupId>
+				<artifactId>jackson-databind-nullable</artifactId>
+				<version>${jackson-databind-nullable.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator</artifactId>
+				<version>${openapi-generator.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>openapi-generator</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<version>${openapi-generator.version}</version>
+				<configuration>
+					<generatorName>spring</generatorName>
+					<skip>${openapi.plugin.skip}</skip>
+
+					<supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+
+					<typeMappings>
+						<typeMapping>OffsetDateTime=LocalDateTime</typeMapping>
+					</typeMappings>
+					<importMappings>
+						<importMapping>java.time.OffsetDateTime=java.time.LocalDateTime</importMapping>
+					</importMappings>
+
+					<configOptions>
+						<interfaceOnly>true</interfaceOnly>
+						<delegatePattern>true</delegatePattern>
+						<sourceFolder>src/java/main</sourceFolder>
+						<reactive>false</reactive>
+						<serializableModel>true</serializableModel>
+						<useBeanValidation>true</useBeanValidation>
+						<generateModelTests>true</generateModelTests>
+						<generateApiTests>true</generateApiTests>
+						<performBeanValidation>true</performBeanValidation>
+						<additionalProperties>
+							<additionalProperty>modelNamePrefix=Dto</additionalProperty>
+						</additionalProperties>
+						<useTags>true</useTags>
+					</configOptions>
+
+				</configuration>
+
+				<executions>
+
+					<execution>
+						<id>generate-rest-api-v1</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/src/main/resources/api-contract.yaml</inputSpec>
+							<skip>false</skip>
+							<configOptions>
+								<apiPackage>com.transaction.app.application.rest.api</apiPackage>
+								<modelPackage>com.transaction.app.application.rest.model</modelPackage>
+								<invokerPackage>com.transaction.app.application.rest.invokers</invokerPackage>
+							</configOptions>
+						</configuration>
+					</execution>
+
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

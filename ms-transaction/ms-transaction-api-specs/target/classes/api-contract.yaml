@@ -1,0 +1,315 @@
+openapi: 3.0.2
+info:
+  title: Api contract for Transaction service
+  description: "Api contract for Transaction service"
+  termsOfService: none
+  contact:
+    email: josejuancarrascogozalo@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 0.0.1-SNAPSHOT
+tags:
+  - name: Transaction
+    description: Data about Transaction
+servers:
+  - url: http://localhost:8084/
+    description: "local host"
+paths:
+   /transaction/ :
+      post:
+         tags:
+            - Transaction
+         summary: save a new transaction
+         description: save a new transaction
+         operationId: saveTransaction
+         requestBody:
+            description: Transaction info
+            content:
+               application/json:
+                  schema:
+                     $ref: '#/components/schemas/Transaction'
+         responses:
+            200:
+              description: transaction information found
+              content:
+                  application/json:
+                     schema:
+                         $ref: '#/components/schemas/Transaction'      
+                         description: Returns the saved transaction   
+            401:
+               description: Authentication is required to get the requested response
+               content:
+                  application/json:
+                     schema:
+                        $ref: '#/components/schemas/Error'
+            403:
+               description: The client does not have the necessary permissions for certain content, so the server is refusing to grant an appropriate response
+               content:
+                  application/json:
+                     schema:
+                        $ref: '#/components/schemas/Error'
+            422:
+               description: Invalid input
+               content:
+                  application/json:
+                     schema:
+                        $ref: '#/components/schemas/Error'
+            500:
+               description: unexpected error
+               content:
+                  application/json:
+                     schema:
+                        $ref: '#/components/schemas/Error'  
+      get:     
+         tags:
+            - Transaction
+         summary: Get transaction list
+         description: Get transaction list
+         operationId: findAllTransaction
+         responses:
+            200:
+               description: Transaction information found
+               content:
+                  application/json:
+                     schema:
+                        type: array
+                        items:
+                           $ref: '#/components/schemas/Transaction'
+                        description: Returns the transaction listt
+            401:
+               description: Authentication is required to get the requested response
+               content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Error'
+            403:
+               description: The client does not have the necessary permissions for certain content, so the server is refusing to grant an appropriate response
+               content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Error'
+            422:
+               description: Invalid input
+               content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Error'
+            500:
+               description: unexpected error
+               content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Error'
+   /transaction/{transactionId} :
+      get:
+         tags:
+         - Transaction
+         summary: Get transaction by id
+         operationId: getTransactionById
+         parameters:
+         - name: transactionId
+           in: path
+           description: Transaction id
+           required: true
+           schema:
+              type: string
+         responses:
+            200:
+              description: Transaction information found
+              content:
+                 applciation/json:
+                    schema:
+                        $ref: '#/components/schemas/Transaction'      
+                        description: Returns the transaction information   
+            401:
+               description: Authentication is required to get the requested response
+               content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Error'
+            403:
+               description: The client does not have the necessary permissions for certain content, so the server is refusing to grant an appropriate response
+               content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Error'
+            422:
+               description: Invalid input
+               content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Error'
+            500:
+               description: unexpected error
+               content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Error'      
+      delete:
+         tags:
+         - Transaction
+         summary: delete the transaction
+         description: Id to delete transaction
+         operationId: deleteTransactionById
+         parameters:
+         - name: transactionId
+           in: path
+           description: Transaction id to delete order
+           required: true
+           schema:
+             type: string
+         responses:
+            200:
+               description: Transaction information deleted
+               content: {
+               }
+            401:
+               description: Authentication is required to get the requested response
+               content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Error'
+            403:
+               description: The client does not have the necessary permissions for certain content, so the server is refusing to grant an appropriate response
+               content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Error'
+            422:
+               description: Invalid input
+               content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Error'
+            500:
+               description: unexpected error
+               content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Error'
+      put:
+         tags:
+         - Transaction
+         summary: Update an existing transaction
+         operationId: updateTransaction
+         parameters:
+         - name: transactionId
+           in: path
+           description: Id to delete transaction
+           required: true
+           schema:
+              type: string
+         requestBody:
+            description: Transaction data to update
+            content:
+               application/json:
+                  schema:
+                     $ref: '#/components/schemas/Transaction'
+            required: true
+         responses:
+            200:
+              description: Transaction information found
+              content:
+                 application/json:
+                  schema:
+                   $ref: '#/components/schemas/Transaction'      
+                   description: Returns the transaction information   
+            401:
+               description: Authentication is required to get the requested response
+               content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Error'
+            403:
+               description: The client does not have the necessary permissions for certain content, so the server is refusing to grant an appropriate response
+               content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Error'
+            422:
+               description: Invalid input
+               content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Error'
+            500:
+               description: unexpected error
+               content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Error'
+   /transaction/artwork/{artworkId} :
+      get:
+         tags:
+         - Transaction
+         summary: Get transactions by artwork
+         operationId: getTransactionkByArtwork
+         parameters:
+         - name: artworkId
+           in: path
+           description: Artwork id
+           required: true
+           schema:
+              type: string
+         responses:
+            200:
+              description: Returns the transaction list by artwork 
+              content:
+                 application/json:
+                    schema:
+                        type: array
+                        items:
+                           $ref: '#/components/schemas/Transaction'
+                        description: Transaction information found
+            401:
+               description: Authentication is required to get the requested response
+               content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Error'
+            403:
+               description: The client does not have the necessary permissions for certain content, so the server is refusing to grant an appropriate response
+               content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Error'
+            422:
+               description: Invalid input
+               content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Error'
+            500:
+               description: unexpected error
+               content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Error'  
+components:
+   schemas:
+      Transaction:
+         type: object
+         properties:
+            transactionId: 
+               type: string
+            transactionType:
+               type: string
+               enum: [COMPRA,VENTA,OFERTA]   
+            price:
+               type: number
+               format: double
+               example: 120.55
+            date:
+               type: string
+               format: date
+               example: 1988-01-30
+            artworkId:
+               type: string
+      Error:
+         type: object
+         properties:
+           code:
+             type: string
+           message:
+             type: string

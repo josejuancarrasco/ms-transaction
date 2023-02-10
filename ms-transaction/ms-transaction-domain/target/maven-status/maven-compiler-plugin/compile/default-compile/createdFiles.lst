@@ -1,0 +1,5 @@
+com\gallery\app\transaction\domain\api\TransactionServiceImp.class
+com\gallery\app\transaction\domain\common\TransactionTypeEnum.class
+com\gallery\app\transaction\domain\model\TransactionDomain.class
+com\gallery\app\transaction\domain\api\TransactionService.class
+com\gallery\app\transaction\domain\port\RepositoryPort.class

@@ -1,0 +1,17 @@
+server:
+  port: 8084
+spring:
+  application:
+    name: Transaction hexagonal microservice
+  jmx:
+    enabled: false
+  data:
+    mongodb:
+      database: gallery
+      host: ${DOCKER_HOST}
+      port: 27017
+springfox:
+  documentation:
+    swagger-ui:
+      base-url: /documentation
+
