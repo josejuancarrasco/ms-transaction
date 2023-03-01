@@ -14,4 +14,3 @@ springfox:
   documentation:
     swagger-ui:
       base-url: /documentation
-

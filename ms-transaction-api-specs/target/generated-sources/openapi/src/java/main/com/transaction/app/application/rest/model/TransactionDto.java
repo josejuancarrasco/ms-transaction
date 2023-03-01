@@ -16,7 +16,7 @@ import org.hibernate.validator.constraints.*;
 /**
  * TransactionDto
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-02-10T14:48:54.328853500+01:00[Europe/Madrid]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-03-01T13:42:36.175244500+01:00[Europe/Madrid]")
 public class TransactionDto  implements Serializable {
   private static final long serialVersionUID = 1L;
 
